@@ -89,14 +89,14 @@ if 'emoncms' in config:
 if 'Solax-BatteryControl' in config:
     outputs.append(SolaxBatteryControl(config['Solax-BatteryControl']))
 
-if 'Solax-Wifi' in config:
+if 'solax-Wifi' in config:
     SolaxWifiInverters = []
-    for inverter in config['Solax-Wifi']['inverters']:
+    for inverter in config['solax-Wifi']['inverters']:
         wifiInverter = SolaxWifi(inverter, config['solax-Wifi']['timeout'])
         SolaxWifiInverters.append(wifiInverter)
 
     looperSolaxWifi = task.LoopingCall(inputActions, SolaxWifiInverters)
-    looperSolaxWifi.start(config['Solax-Wifi']['poll_period'])
+    looperSolaxWifi.start(config['solax-Wifi']['poll_period'])
 
 if 'Solax-Modbus' in config:
     SolaxModbusInverters = []
